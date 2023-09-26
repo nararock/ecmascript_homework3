@@ -46,11 +46,11 @@ manager.displayInfo(); // "Name: John Doe, Department: Sales"
 class Product {
     constructor(name, price, quantity) {
         this.name = name;
-        if (!Number.isFinite(price) || price <= 0 || price > 1000000) {
+        if (!Number.isFinite(price) || price <= 0) {
             throw new Error("Некорректный формат цены товара");
         }
         this.price = price;
-        if (!Number.isFinite(quantity) || quantity <= 0 || quantity > 100 || quantity % 1 != 0) {
+        if (!Number.isInteger(quantity) || quantity <= 0) {
             throw new Error("Некорректный формат количества товара");
         }
         this.quantity = quantity;
@@ -63,7 +63,7 @@ class Order {
         this.id = id;
     }
     addProduct(product) {
-        if (Object.getPrototypeOf(product) != Product.prototype) {
+        if (Object.getPrototypeOf(product) !== Product.prototype) {
             throw new Error("Некорректный формат продукта.")
         }
         this.products.push(product);
